@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">	
+<title>Psychic Game Homework</title>
+</head>
+
+<body>
+<div id="textgame">
+		<h1> Psychic Game </h1>
+		<p>Guess what letter I'm thinking of
+    </p>
+		<p>Wins:
+    </p>
+		<p>Losses:
+    </p>
+		<p>Guesses Left:
+    </p>
+		<p>Your Guesses:
+    </p>
+	</div>
+
+	<script type="text/javascript">
+		
+		 var compChoices = ["q","w","e","r","t","y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ", "z", "x", "c", "v", "b", "n","m",];
+
+		 var wins = 0;
+		 var losses = 0;
+		 var numGuesses = 9;
+		 var guessChoices = [];
+
+     document.onkeyup = function() {
+      var options = ["q","w","e","r","t","y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ", "z", "x", "c", "v", "b", "n","m",];
+      var userGuess = event.key;
+      var compGuess = compChoices[Math.floor(Math.random() * compChoices.length)];
+      
+			if (options.indexOf(userGuess)) {
+
+				if (userGuess == compGuess) {
+					wins++;
+					numGuesses = 9;
+					guessChoices = [];
+				}
+
+				if (userGuess != compGuess) {
+					numGuesses --;
+					guessChoices.push(userGuess);
+				}
+
+				if (numGuesses == 0) {
+
+				numGuesses = 9;
+				losses ++;
+				guessChoices = [];	
+			}
+      var text = 
+      "<h1> The Psychic Game </h1>" + "<p>Guess what letter I'm thinking of</p>" + "<p>Wins: " + wins + "</p>" + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + numGuesses + "</p>" + "<p>Your Guesses: " + guessChoices.join(", ") + "</p>";
+
+      document.querySelector("#textgame").innerHTML = text;
+      } 
+		};
+  
+	</script>
+</body>
+</html>
